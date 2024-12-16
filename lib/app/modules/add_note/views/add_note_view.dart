@@ -13,10 +13,24 @@ class AddNoteView extends GetView<AddNoteController> {
         title: const Text('AddNoteView'),
         centerTitle: true,
       ),
-      body: const Center(
-        child: Text(
-          'AddNoteView is working',
-          style: TextStyle(fontSize: 20),
+      body: Container(
+        padding: EdgeInsets.all(20),
+        child: Column(
+          children: [
+            TextFormField(
+              decoration: InputDecoration(
+                hintText: "Write Notes",
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(4),
+                ),
+              ),
+              maxLines: 20,
+            ),
+            SizedBox(
+              height: 25,
+            ),
+            ElevatedButton(onPressed: () {}, child: Text("Add Notes")),
+          ],
         ),
       ),
     );
