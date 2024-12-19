@@ -1,23 +1,15 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AddNoteController extends GetxController {
   //TODO: Implement AddNoteController
 
   final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
-  }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
+   var selectedValue = Rx<String?> (null);
+   var noteTextController = TextEditingController();
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
+
 
   void increment() => count.value++;
 }

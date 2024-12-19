@@ -15,7 +15,7 @@ class HomeView extends GetView<HomeController> {
         title: const Text('Note'),
       ),
       body: Container(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -29,35 +29,37 @@ class HomeView extends GetView<HomeController> {
             Expanded(
               child: Skeletonizer(
                 enabled: false,
-                child: ListView.separated(
-                  itemCount: controller.notes.length,
-                  itemBuilder: (context, index) {
-                    var note = controller.notes[index];
-                    return Dismissible(
-                      key: UniqueKey(),
-                      child: Card(
-                        child: ListTile(
-                          leading: Icon(Icons.note_rounded),
-                          title: Text(note['note'] ?? ' '),
-                          trailing: Container(
-                            height: 15,
-                            width: 15,
-                            decoration: BoxDecoration(
-                              color: (note['priority'] == 'high')
-                                  ? Colors.red
-                                  : (note['priority'] == 'medium')
-                                      ? Colors.yellow
-                                      : Colors.green,
-                              shape: BoxShape.circle,
+                child: Obx( () =>
+                ListView.separated(
+                    itemCount: controller.notes.length,
+                    itemBuilder: (context, index) {
+                      var note = controller.notes[index];
+                      return Dismissible(
+                        key: UniqueKey(),
+                        child: Card(
+                          child: ListTile(
+                            leading: const Icon(Icons.note_rounded),
+                            title: Text(note['note'] ?? ' '),
+                            trailing: Container(
+                              height: 15,
+                              width: 15,
+                              decoration: BoxDecoration(
+                                color: (note['priority'] == 'HIGH')
+                                    ? Colors.red
+                                    : (note['priority'] == 'MEDIUM')
+                                        ? Colors.yellow
+                                        : Colors.green,
+                                shape: BoxShape.circle,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    );
-                  },
-                  separatorBuilder: (BuildContext context, int index) {
-                    return SizedBox(height: 10);
-                  },
+                      );
+                    },
+                    separatorBuilder: (BuildContext context, int index) {
+                      return const SizedBox(height: 10);
+                    },
+                  ),
                 ),
               ),
             ),
@@ -68,7 +70,7 @@ class HomeView extends GetView<HomeController> {
         onPressed: () {
           Get.toNamed(Routes.ADD_NOTE);
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }
